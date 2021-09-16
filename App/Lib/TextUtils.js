@@ -1,3 +1,5 @@
+import dayjs from './DayJs'
+
 export const strReplace = (source, replace, replaceWith) => {
   var value = source
   var i = 0
@@ -44,37 +46,37 @@ export const getDate = (value, newFormat = null) => {
   if (newFormat == null) {
     newFormat = 'DD MMMM YYYY'
   }
-  let date = moment(value, formatDateDefault).format(newFormat)
+  let date = dayjs(value, formatDateDefault).format(newFormat)
   return date
 }
 
 export const getCurrentDate = () => {
-  let date = moment(new Date, 'DD-MM-YYYY').format();
+  let date = dayjs(new Date, 'DD-MM-YYYY').format();
   return date
 }
 
 export const getDateTime = (value) => {
-  let date = moment(value, formatDateDefault).format('DD MMMM YYYY HH:mm:ss')
+  let date = dayjs(value, formatDateDefault).format('DD MMMM YYYY HH:mm:ss')
   return date
 }
 
 export const getDateTime2 = (value) => {
-  let date = moment(value, formatDateDefault).format('DD MMMM YYYY HH:mm')
+  let date = dayjs(value, formatDateDefault).format('DD MMMM YYYY HH:mm')
   return date
 }
 
 export const getFullDay = (value) => {
-  let date = moment(value, formatDateDefault).format('dddd, DD MMMM YYYY')
+  let date = dayjs(value, formatDateDefault).format('dddd, DD MMMM YYYY')
   return date
 }
 
 export const getTime = (value) => {
-  let date = moment(value, formatDateDefault).format('HH:mm:ss')
+  let date = dayjs(value, formatDateDefault).format('HH:mm:ss')
   return date
 }
 
 export const getHour = (value) => {
-  let date = moment(value, formatDateDefault).format('HH:mm')
+  let date = dayjs(value, formatDateDefault).format('HH:mm')
   return date
 }
 
