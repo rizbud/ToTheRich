@@ -21,13 +21,15 @@ const DATA = [
 const DailyExpensesList = (props) => {
   return (
     <SectionList
+      {...props}
+      showsVerticalScrollIndicator={false}
       sections={DATA}
       keyExtractor={(_, index) => String(index)}
       renderSectionHeader={({section: {title}}) => (
         <Text style={styles.header}>{title}</Text>
       )}
       renderItem={({item}) => <DailyExpenses item={item} />}
-      contentContainerStyle={apply('px-4')}
+      contentContainerStyle={apply('py-4')}
       style={apply('full')}
     />
   );

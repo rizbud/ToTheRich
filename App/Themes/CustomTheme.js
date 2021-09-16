@@ -20,6 +20,7 @@ export default {
   },
   spacing: {
     30: 120,
+    5: 25,
   },
   border: {
     width: {
