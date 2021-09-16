@@ -29,7 +29,7 @@ const Button = (props) => {
 
 Button.propTypes = {
   children: PropTypes.any,
-  style: PropTypes.object,
+  style: PropTypes.any,
 };
 
 Button.defaultProps = {

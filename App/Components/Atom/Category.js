@@ -58,7 +58,7 @@ const Category = (props) => {
       case 5:
         return 'bg-purple';
       case 6:
-        return 'bg-green-2';
+        return 'bg-green';
       case 7:
         return 'bg-purple-2';
       case 8:

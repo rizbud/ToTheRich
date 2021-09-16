@@ -18,6 +18,7 @@
         "alias": {
           "@Components": "./App/Components",
           "@Config": "./App/Config",
+          "@Constants": "./App/Constants",
           "@Containers": "./App/Containers",
           "@Fixtures": "./App/Fixtures",
           "@Images": "./App/Images",
