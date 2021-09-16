@@ -1,7 +1,6 @@
-import {useCallback, useState, useRef, useEffect} from 'react';
+import {useCallback, useState, useRef} from 'react';
 import {connect} from 'react-redux';
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '@Redux/YourRedux'
+import ExpensesActions from '@Redux/ExpensesRedux';
 import {FlatList, View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -20,6 +19,7 @@ import {apply} from '@Themes/OsmiProvider';
 import {formatMoney, moneytoInt} from '@Lib/TextUtils';
 
 const AddExpenseScreen = (props) => {
+  const {addExpenses} = props;
   const modalRef = useRef();
   const [form, setForm] = useState({
     name: '',
@@ -40,6 +40,10 @@ const AddExpenseScreen = (props) => {
     },
     [form],
   );
+
+  const handleSubmit = useCallback(() => {
+    addExpenses(form);
+  }, [form]);
 
   const handleModal = useCallback(() => {
     modalRef?.current?.show();
@@ -95,6 +99,7 @@ const AddExpenseScreen = (props) => {
         />
         <Button
           disabled={disabled}
+          onPress={handleSubmit}
           style={[styles.button, disabled && apply('bg-gray')]}>
           <Text style={styles.labelButton}>Simpan</Text>
         </Button>
@@ -114,6 +119,8 @@ const AddExpenseScreen = (props) => {
 
 const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  addExpenses: (data) => dispatch(ExpensesActions.storeExpenses(data)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddExpenseScreen);
