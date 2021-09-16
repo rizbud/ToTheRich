@@ -1,4 +1,4 @@
-import {memo, useState, useCallback} from 'react';
+import {memo, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Pressable, Text} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -13,14 +13,14 @@ const DatePicker = (props) => {
   const {value, setValue, datePickerProps, placeholder} = props;
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleConfirm = useCallback((date) => {
+  const handleConfirm = (date) => {
     setIsVisible(false);
     setValue(date);
-  }, []);
+  };
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = () => {
     setIsVisible(false);
-  }, []);
+  };
 
   return (
     <>
@@ -44,8 +44,8 @@ const DatePicker = (props) => {
 
 // Prop type warnings
 DatePicker.propTypes = {
-  value: PropTypes.any.isRequired,
-  setValue: PropTypes.func.isRequired,
+  value: PropTypes.any,
+  setValue: PropTypes.func,
   datePickerProps: PropTypes.object,
   placeholder: PropTypes.string,
 };

@@ -40,7 +40,7 @@ const HomeScreen = (props) => {
 
   const _floatingBtn = () => (
     <TouchableOpacity
-      onPress={() => alert('Towewew')}
+      onPress={() => navigation.navigate('AddExpenses')}
       activeOpacity={0.9}
       style={styles.floatingBtn}>
       <Icon name="plus" size={28} color="#fff" />

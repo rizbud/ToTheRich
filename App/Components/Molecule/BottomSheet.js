@@ -9,7 +9,7 @@ import styles from '../Styles/Molecule/BottomSheetStyle';
 import {apply} from '@Themes/OsmiProvider';
 
 const BottomSheet = forwardRef((props, ref) => {
-  const {title, children} = props;
+  const {title, children, height = 300} = props;
   const modalRef = useRef();
 
   useImperativeHandle(ref, () => ({
@@ -24,7 +24,7 @@ const BottomSheet = forwardRef((props, ref) => {
   return (
     <RBSheet
       ref={modalRef}
-      height={300}
+      height={height}
       customStyles={{
         container: styles.container,
       }}>
