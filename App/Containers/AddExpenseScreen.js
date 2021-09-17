@@ -43,6 +43,12 @@ const AddExpenseScreen = (props) => {
 
   const handleSubmit = useCallback(() => {
     addExpenses(form);
+    setForm({
+      name: '',
+      category: null,
+      date: null,
+      nominal: '',
+    });
   }, [form]);
 
   const handleModal = useCallback(() => {
@@ -71,7 +77,7 @@ const AddExpenseScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={apply('flex-grow')}
+        contentContainerStyle={apply('flex-grow py-3')}
         keyboardShouldPersistTaps="always">
         <InputText
           placeholder="Nama Pengeluaran"

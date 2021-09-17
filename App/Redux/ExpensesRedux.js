@@ -21,7 +21,7 @@ export const INITIAL_STATE = Immutable({
 export const storeExpenses = (state, {data}) =>
   state.merge({
     ...state,
-    expenses: [...state.expenses, data],
+    expenses: [data, ...state.expenses],
   });
 
 /* ------------- Hookup Reducers To Types ------------- */

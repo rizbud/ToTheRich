@@ -1,11 +1,13 @@
-import {memo} from 'react';
-// import PropTypes from 'prop-types'
-import {SectionList, View, Text} from 'react-native';
+import {memo, useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
+import {SectionList, Text} from 'react-native';
 import {DailyExpenses} from '..';
+import GroupByTime from 'group-by-time';
 
 // Styles
 import styles from '../Styles/Organism/DailyExpensesListStyle';
 import {apply} from '@Themes/OsmiProvider';
+import {dateFormat} from '@Lib/TextUtils';
 
 const DATA = [
   {
@@ -19,14 +21,27 @@ const DATA = [
 ];
 
 const DailyExpensesList = (props) => {
+  const {data} = props;
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    const grouped = GroupByTime(data, 'date', 'day');
+    const sortedGroup = Object.keys(grouped)?.sort()?.reverse();
+    const groupedArray = sortedGroup?.map((item) => ({
+      title: Number(item),
+      data: grouped[item],
+    }));
+    setSections(groupedArray);
+  }, [data]);
+
   return (
     <SectionList
       {...props}
       showsVerticalScrollIndicator={false}
-      sections={DATA}
+      sections={sections}
       keyExtractor={(_, index) => String(index)}
       renderSectionHeader={({section: {title}}) => (
-        <Text style={styles.header}>{title}</Text>
+        <Text style={styles.header}>{dateFormat(title)}</Text>
       )}
       renderItem={({item}) => <DailyExpenses item={item} />}
       contentContainerStyle={apply('py-4')}
@@ -35,15 +50,9 @@ const DailyExpensesList = (props) => {
   );
 };
 
-// // Prop type warnings
-// DailyExpensesList.propTypes = {
-//   someProperty: PropTypes.object,
-//   someSetting: PropTypes.bool.isRequired,
-// }
-//
-// // Defaults for props
-// DailyExpensesList.defaultProps = {
-//   someSetting: false
-// }
+// Prop type warnings
+DailyExpensesList.propTypes = {
+  data: PropTypes.array,
+};
 
 export default memo(DailyExpensesList);

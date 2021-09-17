@@ -10,5 +10,5 @@ export default connect({
   summary: 'row items-center my-3 px-4',
   card: 'flex rounded-xl p-4',
   floatingBtn:
-    'absolute z-10 bottom-5 right-5 w-48 h-48 bg-teal rounded-full items-center justify-center',
+    'absolute z-10 bottom-5 right-5 w-52 h-52 bg-teal rounded-full items-center justify-center shadow-lg',
 });
