@@ -70,7 +70,7 @@ const HomeScreen = (props) => {
           <>
             {_header()}
             {_summary()}
-            <CategoryExpensesList data={expenses} />
+            {expenses?.length > 0 && <CategoryExpensesList data={expenses} />}
           </>
         }
       />
