@@ -24,7 +24,7 @@ const HomeScreen = (props) => {
       const totalExpenses = todayExpenses
         ?.map((item) => item?.nominal)
         ?.reduce((a, b) => Number(a) + Number(b));
-      return totalExpenses;
+      return totalExpenses || 0;
     },
     [expenses],
   );
