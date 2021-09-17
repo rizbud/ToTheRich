@@ -13,9 +13,9 @@ const DailyExpenses = (props) => {
 
   return (
     <View style={styles.container}>
-      <Category id={1} size={28} />
-      <Text style={styles.name}>Food</Text>
-      <Text style={styles.price}>Rp{formatMoney(50000)}</Text>
+      <Category id={item?.category?.id} size={28} />
+      <Text style={styles.name}>{item?.name}</Text>
+      <Text style={styles.price}>Rp{formatMoney(item?.nominal)}</Text>
     </View>
   );
 };

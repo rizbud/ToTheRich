@@ -71,6 +71,20 @@ export const getFullDay = (value) => {
   return date;
 };
 
+export const dateFormat = (value) => {
+  const date = new Date();
+  const today = date.setHours(0, 0, 0, 0).valueOf();
+  console.log(today);
+  const yesterday = today - 1000 * 60 * 60 * 24;
+  if (today === value) {
+    return 'Hari ini';
+  } else if (yesterday === value) {
+    return 'Kemarin';
+  } else {
+    return dayjs(value).format('DD MMMM YYYY');
+  }
+};
+
 export const getTime = (value) => {
   let date = dayjs(value).format('HH:mm:ss');
   return date;
