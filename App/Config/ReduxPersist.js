@@ -1,5 +1,5 @@
-import immutablePersistenceTransform from '@Services/ImmutablePersistenceTransform'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import immutablePersistenceTransform from '@Services/ImmutablePersistenceTransform';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const REDUX_PERSIST = {
   active: true,
@@ -11,10 +11,9 @@ const REDUX_PERSIST = {
     blacklist: ['login', 'search', 'nav'],
     // Optionally, just specify the keys you DO want stored to persistence.
     // An empty array means 'don't store any reducers' -> infinitered/ignite#409
-    // whitelist: [],
-    transforms: [immutablePersistenceTransform]
-  }
-}
+    whitelist: ['expenses'],
+    transforms: [immutablePersistenceTransform],
+  },
+};
 
-export default REDUX_PERSIST
-  
+export default REDUX_PERSIST;
