@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ExpensesActions from '@Redux/ExpensesRedux';
 import {FlatList, View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import PushNotification from '@Services/PushNotification';
 import {
   InputText,
   PressableInput,
@@ -19,7 +20,7 @@ import {apply} from '@Themes/OsmiProvider';
 import {formatMoney, moneytoInt} from '@Lib/TextUtils';
 
 const AddExpenseScreen = (props) => {
-  const {addExpenses} = props;
+  const {addExpenses, navigation} = props;
   const modalRef = useRef();
   const [form, setForm] = useState({
     name: '',
@@ -43,12 +44,12 @@ const AddExpenseScreen = (props) => {
 
   const handleSubmit = useCallback(() => {
     addExpenses(form);
-    setForm({
-      name: '',
-      category: null,
-      date: null,
-      nominal: '',
+    PushNotification.localNotification({
+      channelId: 'to-the-rich-app',
+      title: form?.name, // (optional)
+      message: `Berhasil menyimpan pengeluaran ${form?.name}`,
     });
+    navigation.goBack();
   }, [form]);
 
   const handleModal = useCallback(() => {
