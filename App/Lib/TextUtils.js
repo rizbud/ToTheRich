@@ -74,7 +74,6 @@ export const getFullDay = (value) => {
 export const dateFormat = (value) => {
   const date = new Date();
   const today = date.setHours(0, 0, 0, 0).valueOf();
-  console.log(today);
   const yesterday = today - 1000 * 60 * 60 * 24;
   if (today === value) {
     return 'Hari ini';
