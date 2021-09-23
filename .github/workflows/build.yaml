@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
+      - name: Add .env file
+        run: |
+          echo ${{ secrets.PROD_ENV }} > .env
       - name: Install npm dependencies
         run: |
           npm install
