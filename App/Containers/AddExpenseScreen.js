@@ -1,8 +1,9 @@
-import {useCallback, useState, useRef} from 'react';
+import {useCallback, useState, useRef, useEffect} from 'react';
 import {connect} from 'react-redux';
 import ExpensesActions from '@Redux/ExpensesRedux';
 import {FlatList, View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Startapp, {Banner} from 'react-native-startapp';
 import PushNotification from '@Services/PushNotification';
 import {
   InputText,
@@ -31,6 +32,14 @@ const AddExpenseScreen = (props) => {
   const disabled =
     !form?.name || !form?.category || !form?.date || !form?.nominal;
 
+  useEffect(() => {
+    const loadInterestitial = async () => {
+      await Startapp.loadInterstitial();
+    };
+
+    loadInterestitial();
+  }, []);
+
   const handleChange = useCallback(
     (name, val) => {
       setForm({
@@ -42,8 +51,9 @@ const AddExpenseScreen = (props) => {
     [form],
   );
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     addExpenses(form);
+    await Startapp.showInterstitial();
     PushNotification.localNotification({
       channelId: 'to-the-rich-app',
       title: form?.name, // (optional)
@@ -111,6 +121,7 @@ const AddExpenseScreen = (props) => {
           <Text style={styles.labelButton}>Simpan</Text>
         </Button>
       </ScrollView>
+      <Banner style={apply('full h-50')} />
       <BottomSheet height={355} title="Pilih Kategori" ref={modalRef}>
         <FlatList
           data={CATEGORY}
